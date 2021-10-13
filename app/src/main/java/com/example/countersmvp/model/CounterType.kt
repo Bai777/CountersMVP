@@ -1,6 +1,6 @@
 package com.example.countersmvp.model
 
-enum class Data {
+enum class CounterType {
     ONE,
     TWO,
     THREE
