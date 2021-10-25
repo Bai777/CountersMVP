@@ -1,19 +1,24 @@
 package com.example.countersmvp.presenter
 
-import com.example.countersmvp.model.CounterType
 import com.example.countersmvp.model.CountersModel
 import com.example.countersmvp.view.IMainView
+import moxy.MvpPresenter
 
-class Presenter(private val view: IMainView) {
-    private val model = CountersModel()
+class Presenter(private val model: CountersModel) : MvpPresenter<IMainView>() {
 
-    fun counterClick(type: CounterType) {
-        val dataFromModel = when (type) {
-            CounterType.ONE -> model.next(0)
-            CounterType.TWO -> model.next(1)
-            CounterType.THREE -> model.next(2)
+    fun counterOneClick() {
+        val nextValue = model.next(0)
+           viewState.setButtonTextOne(nextValue.toString())
         }
-        view.setButtonText(type, dataFromModel.toString())
-    }
+    fun counterTwoClick() {
+        val nextValue = model.next(1)
+           viewState.setButtonTextOne(nextValue.toString())
+        }
+    fun counterThreeClick() {
+        val nextValue = model.next(2)
+           viewState.setButtonTextOne(nextValue.toString())
+        }
+
+
 }
 

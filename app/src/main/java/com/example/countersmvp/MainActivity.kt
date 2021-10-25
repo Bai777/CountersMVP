@@ -11,11 +11,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().setCustomAnimations(
                 R.anim.slide_in,
                 R.anim.slide_out
-            ).replace(R.id.container, FragmentMain.newInstance()).commit()
+            ).replace(R.id.container, FragmentMain.newInstance())
+                .commit()
         }
     }
 }
