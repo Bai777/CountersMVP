@@ -1,7 +1,6 @@
 package com.example.countersmvp.view
 
 import android.os.Bundle
-import android.view.View
 import com.example.countersmvp.databinding.FragmentMainBinding
 import com.example.countersmvp.model.CountersModel
 import com.example.countersmvp.presenter.Presenter
@@ -13,7 +12,7 @@ class FragmentMain : MvpAppCompatActivity(),
     private lateinit var binding: FragmentMainBinding
     private val presenter by moxyPresenter { Presenter(CountersModel()) }
 
-    override fun onCreate(view: View, savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.btnCounter1.setOnClickListener { presenter.counterOneClick() }
         binding.btnCounter2.setOnClickListener { presenter.counterTwoClick() }
