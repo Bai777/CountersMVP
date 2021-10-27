@@ -1,13 +1,14 @@
 package com.example.countersmvp.view
 
 import android.os.Bundle
+import com.example.countersmvp.ViewBindingFragment
 import com.example.countersmvp.databinding.FragmentMainBinding
 import com.example.countersmvp.model.CountersModel
 import com.example.countersmvp.presenter.Presenter
-import moxy.MvpAppCompatActivity
+import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class FragmentMain : MvpAppCompatActivity(),
+class FragmentMain : MvpAppCompatFragment(),
     IMainView {
     private lateinit var binding: FragmentMainBinding
     private val presenter by moxyPresenter { Presenter(CountersModel()) }
