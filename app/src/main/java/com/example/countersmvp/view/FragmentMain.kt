@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.countersmvp.ViewBindingFragment
 import com.example.countersmvp.databinding.FragmentMainBinding
 import com.example.countersmvp.model.CountersModel
 import com.example.countersmvp.presenter.Presenter

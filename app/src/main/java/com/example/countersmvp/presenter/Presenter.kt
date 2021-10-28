@@ -18,7 +18,5 @@ class Presenter(private val model: CountersModel) : MvpPresenter<IMainView>() {
         val nextValue = model.next(2)
            viewState.setButtonTextThree(nextValue.toString())
         }
-
-
 }
 
