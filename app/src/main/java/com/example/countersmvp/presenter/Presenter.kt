@@ -8,15 +8,17 @@ class Presenter(private val model: CountersModel) : MvpPresenter<IMainView>() {
 
     fun counterOneClick() {
         val nextValue = model.next(0)
-           viewState.setButtonTextOne(nextValue.toString())
-        }
+        viewState.setButtonTextOne(nextValue.toString())
+    }
+
     fun counterTwoClick() {
         val nextValue = model.next(1)
-           viewState.setButtonTextTwo(nextValue.toString())
-        }
+        viewState.setButtonTextTwo(nextValue.toString())
+    }
+
     fun counterThreeClick() {
         val nextValue = model.next(2)
-           viewState.setButtonTextThree(nextValue.toString())
-        }
+        viewState.setButtonTextThree(nextValue.toString())
+    }
 }
 
