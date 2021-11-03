@@ -1,5 +1,5 @@
 package com.example.countersmvp.presenter
 
-import com.example.countersmvp.view.UserItemView
+import com.example.countersmvp.view.IUserItemView
 
-interface IUserListPresenter: IListPresenter<UserItemView>
+interface IUserListPresenter: IListPresenter<IUserItemView>

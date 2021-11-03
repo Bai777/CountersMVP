@@ -6,11 +6,9 @@ import com.example.countersmvp.view.IListUsersView
 import com.example.countersmvp.view.IUserItemView
 import moxy.MvpPresenter
 
-class Presenter(private val usersRepo: GithubUsersRepo) : MvpPresenter<IListUsersView>() {
-
+class ScreenListUsersPresenter(private val usersRepo: GithubUsersRepo): MvpPresenter<IListUsersView>() {
     class UsersListPresenter : IUserListPresenter {
         val users = mutableListOf<GithubUser>()
-
         override var itemClickListener: ((IUserItemView) -> Unit)? = null
 
         override fun getCount() = users.size
@@ -21,7 +19,7 @@ class Presenter(private val usersRepo: GithubUsersRepo) : MvpPresenter<IListUser
         }
     }
 
-    val usersListPresenter = UsersListPresenter()
+    private val usersListPresenter = UsersListPresenter()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -29,17 +27,13 @@ class Presenter(private val usersRepo: GithubUsersRepo) : MvpPresenter<IListUser
         loadData()
 
         usersListPresenter.itemClickListener = { itemView ->
-            //TODO: переход на экран пользователя c помощью router.navigateTo
+            //TODO: переход на экран пользователя
         }
     }
 
     fun loadData() {
-        val users = usersRepo.getUsers()
+        val users =  usersRepo.getUsers()
         usersListPresenter.users.addAll(users)
         viewState.updateList()
     }
-
-
-
 }
-

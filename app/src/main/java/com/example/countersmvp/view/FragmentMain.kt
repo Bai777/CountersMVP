@@ -1,23 +1,26 @@
 package com.example.countersmvp.view
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.countersmvp.databinding.FragmentMainBinding
-import com.example.countersmvp.model.CountersModel
+import com.example.countersmvp.model.GithubUsersRepo
 import com.example.countersmvp.presenter.Presenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
 class FragmentMain : MvpAppCompatFragment(),
-    IMainView {
+    IListUsersView {
     private var _binding: FragmentMainBinding? = null
     val binding: FragmentMainBinding
         get() {
             return _binding!!
         }
-    private val presenter by moxyPresenter { Presenter(CountersModel()) }
+    private val presenter by moxyPresenter { Presenter(GithubUsersRepo()) }
+    private var adapter: UsersRVAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,27 +31,19 @@ class FragmentMain : MvpAppCompatFragment(),
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.btnCounter1.setOnClickListener { presenter.counterOneClick() }
-        binding.btnCounter2.setOnClickListener { presenter.counterTwoClick() }
-        binding.btnCounter3.setOnClickListener { presenter.counterThreeClick() }
-    }
-
     companion object {
         fun newInstance() = FragmentMain()
     }
 
 
-    override fun setButtonTextOne(text: String) {
-        binding.btnCounter1.text = text
+    override fun init() {
+        binding.rvUsers.layoutManager = LinearLayoutManager(context)
+        adapter = UsersRVAdapter(presenter.usersListPresenter)
+        binding.rvUsers.adapter = adapter
     }
 
-    override fun setButtonTextTwo(text: String) {
-        binding.btnCounter2.text = text
-    }
-
-    override fun setButtonTextThree(text: String) {
-        binding.btnCounter3.text = text
+    @SuppressLint("NotifyDataSetChanged")
+    override fun updateList() {
+        adapter?.notifyDataSetChanged()
     }
 }

@@ -10,3 +10,4 @@ interface IMainView: MvpView {
     fun setButtonTextTwo(text: String)
     fun setButtonTextThree(text: String)
 }
+

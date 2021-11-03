@@ -1,5 +1,5 @@
 package com.example.countersmvp.view
 
-interface UserItemView: IItemView {
+interface IUserItemView: IItemView {
     fun setLogin(text: String)
 }

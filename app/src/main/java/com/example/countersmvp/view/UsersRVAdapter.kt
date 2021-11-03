@@ -1,12 +1,12 @@
-package com.example.countersmvp.presenter
+package com.example.countersmvp.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.countersmvp.databinding.ItemUserBinding
-import com.example.countersmvp.view.UserItemView
+import com.example.countersmvp.presenter.IUserListPresenter
 
-class UsersRVAdapter(val presenter: IUserListPresenter) : RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {
+class UsersRVAdapter(private val presenter: IUserListPresenter) : RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(ItemUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)).apply {
@@ -17,7 +17,7 @@ class UsersRVAdapter(val presenter: IUserListPresenter) : RecyclerView.Adapter<U
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = presenter.bindView(holder.apply { pos = position })
 
-    inner class ViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root), UserItemView {
+    inner class ViewHolder(private val binding: ItemUserBinding) : RecyclerView.ViewHolder(binding.root), IUserItemView {
         override var pos = -1
 
         override fun setLogin(text: String) = with(binding) {

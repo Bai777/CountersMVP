@@ -1,55 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="@dimen/paddingMainLinearLayout"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:fontFamily="@font/advent_pro_thin"
-        android:id="@+id/tv_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/counter_one" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_users"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="16dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_counter1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textButtons"
-        app:layout_constraintTop_toBottomOf="@id/tv_1" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:fontFamily="@font/advent_pro_thin"
-        android:id="@+id/tv_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/counter_two"
-        app:layout_constraintTop_toBottomOf="@id/btn_counter1" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_counter2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textButtons"
-        app:layout_constraintTop_toBottomOf="@id/tv_2" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:fontFamily="@font/advent_pro_thin"
-        android:id="@+id/tv_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/counter_three"
-        app:layout_constraintTop_toBottomOf="@id/btn_counter2" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_counter3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/textButtons"
-        app:layout_constraintTop_toBottomOf="@id/tv_3" />
-</LinearLayout>
+</RelativeLayout>
