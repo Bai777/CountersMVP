@@ -39,7 +39,10 @@ class Presenter(private val usersRepo: GithubUsersRepo) : MvpPresenter<IListUser
         viewState.updateList()
     }
 
-
+//    fun backPressed(): Boolean {
+//        router.exit()
+//        return true
+//    }
 
 }
 
