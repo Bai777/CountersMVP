@@ -6,20 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.countersmvp.databinding.FragmentMainBinding
+import com.example.countersmvp.databinding.FragmentUsersBinding
 import com.example.countersmvp.model.GithubUsersRepo
-import com.example.countersmvp.presenter.Presenter
+import com.example.countersmvp.presenter.UsersPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class FragmentMain : MvpAppCompatFragment(),
-    IListUsersView {
-    private var _binding: FragmentMainBinding? = null
-    val binding: FragmentMainBinding
+class UsersFragment : MvpAppCompatFragment(),
+    IUsersView {
+    private var _binding: FragmentUsersBinding? = null
+    private val binding: FragmentUsersBinding
         get() {
             return _binding!!
         }
-    private val presenter by moxyPresenter { Presenter(GithubUsersRepo()) }
+    private val presenter by moxyPresenter { UsersPresenter(GithubUsersRepo(), App.instance.router) }
     private var adapter: UsersRVAdapter? = null
 
     override fun onCreateView(
@@ -27,19 +27,21 @@ class FragmentMain : MvpAppCompatFragment(),
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMainBinding.inflate(inflater)
+        _binding = FragmentUsersBinding.inflate(inflater)
         return binding.root
     }
 
     companion object {
-        fun newInstance() = FragmentMain()
+        fun newInstance() = UsersFragment()
     }
 
 
     override fun init() {
-        binding.rvUsers.layoutManager = LinearLayoutManager(context)
-        adapter = UsersRVAdapter(presenter.usersListPresenter)
-        binding.rvUsers.adapter = adapter
+        binding.run {
+            this.rvUsers.layoutManager = LinearLayoutManager(context)
+            adapter = UsersRVAdapter(presenter.usersListPresenter)
+            this.rvUsers.adapter = adapter
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")

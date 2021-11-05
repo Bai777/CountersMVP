@@ -2,11 +2,12 @@ package com.example.countersmvp.presenter
 
 import com.example.countersmvp.model.GithubUser
 import com.example.countersmvp.model.GithubUsersRepo
-import com.example.countersmvp.view.IListUsersView
+import com.example.countersmvp.view.IUsersView
 import com.example.countersmvp.view.IUserItemView
+import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class Presenter(private val usersRepo: GithubUsersRepo) : MvpPresenter<IListUsersView>() {
+class UsersPresenter(private val usersRepo: GithubUsersRepo, private val router: Router) : MvpPresenter<IUsersView>() {
 
     class UsersListPresenter : IUserListPresenter {
         val users = mutableListOf<GithubUser>()
@@ -39,10 +40,10 @@ class Presenter(private val usersRepo: GithubUsersRepo) : MvpPresenter<IListUser
         viewState.updateList()
     }
 
-//    fun backPressed(): Boolean {
-//        router.exit()
-//        return true
-//    }
+    fun backPressed(): Boolean {
+        router.exit()
+        return true
+    }
 
 }
 

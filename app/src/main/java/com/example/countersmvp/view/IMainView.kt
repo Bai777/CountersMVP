@@ -6,8 +6,5 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface IMainView: MvpView {
-    fun setButtonTextOne(text: String)
-    fun setButtonTextTwo(text: String)
-    fun setButtonTextThree(text: String)
 }
 

@@ -1,23 +1,46 @@
 package com.example.countersmvp
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.countersmvp.databinding.ActivityMainBinding
-import com.example.countersmvp.view.FragmentMain
+import com.example.countersmvp.presenter.MainPresenter
+import com.example.countersmvp.view.AndroidScreens
+import com.example.countersmvp.view.App
+import com.example.countersmvp.view.IBackButtonListener
+import com.example.countersmvp.view.IMainView
+import com.github.terrakok.cicerone.androidx.AppNavigator
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : MvpAppCompatActivity(), IMainView {
+
+    private val navigator = AppNavigator(this, R.id.container)
+
+    private val presenter by moxyPresenter { MainPresenter(App.instance.router, AndroidScreens()) }
+    private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().setCustomAnimations(
-                R.anim.slide_in,
-                R.anim.slide_out
-            ).replace(R.id.container, FragmentMain.newInstance())
-                .commit()
+        setContentView(binding?.root)
+    }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        App.instance.navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        App.instance.navigatorHolder.removeNavigator()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportFragmentManager.fragments.forEach {
+            if (it is IBackButtonListener && it.backPressed()){
+                return
+            }
         }
+        presenter.backClicked()
     }
 }
