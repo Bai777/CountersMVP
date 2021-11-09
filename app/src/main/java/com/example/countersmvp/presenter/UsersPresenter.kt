@@ -2,12 +2,15 @@ package com.example.countersmvp.presenter
 
 import com.example.countersmvp.model.GithubUser
 import com.example.countersmvp.model.GithubUsersRepo
+import com.example.countersmvp.view.IUsersScreens
 import com.example.countersmvp.view.IUsersView
 import com.example.countersmvp.view.IUserItemView
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class UsersPresenter(private val usersRepo: GithubUsersRepo, private val router: Router) : MvpPresenter<IUsersView>() {
+class UsersPresenter(private val usersRepo: GithubUsersRepo,
+                     private val router: Router,
+                     private val usersScreens: IUsersScreens) : MvpPresenter<IUsersView>() {
 
     class UsersListPresenter : IUserListPresenter {
         val users = mutableListOf<GithubUser>()
@@ -30,11 +33,12 @@ class UsersPresenter(private val usersRepo: GithubUsersRepo, private val router:
         loadData()
 
         usersListPresenter.itemClickListener = { itemView ->
-            //TODO: переход на экран пользователя c помощью router.navigateTo
+          val user = usersListPresenter.users[itemView.pos]
+            router.navigateTo(usersScreens.userDetail(user))
         }
     }
 
-    fun loadData() {
+    private fun loadData() {
         val users = usersRepo.getUsers()
         usersListPresenter.users.addAll(users)
         viewState.updateList()

@@ -5,25 +5,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.countersmvp.databinding.FragmentUserDetailsBinding
 import com.example.countersmvp.databinding.FragmentUsersBinding
 import com.example.countersmvp.model.GithubUsersRepo
 import com.example.countersmvp.presenter.UsersPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
+class DetailsUsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
     companion object {
-        fun newInstance() = UsersFragment()
+        fun newInstance() = DetailsUsersFragment()
     }
 
-    private val presenter: UsersPresenter by moxyPresenter { UsersPresenter(GithubUsersRepo(),
-        App.instance.router, AndroidScreens()) }
+    private val presenter: UsersPresenter by moxyPresenter { UsersPresenter(GithubUsersRepo(), App.instance.router, AndroidScreens()) }
     private var adapter: UsersRVAdapter? = null
 
-    private var binding: FragmentUsersBinding? = null
+    private var binding: FragmentUserDetailsBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-        FragmentUsersBinding.inflate(inflater, container, false).also {
+        FragmentUserDetailsBinding.inflate(inflater, container, false).also {
             binding = it
         }.root
 
@@ -33,9 +33,6 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
     }
 
     override fun init() {
-        binding?.rvUsers?.layoutManager = LinearLayoutManager(context)
-        adapter = UsersRVAdapter(presenter.usersListPresenter)
-        binding?.rvUsers?.adapter = adapter
     }
 
     @SuppressLint("NotifyDataSetChanged")
