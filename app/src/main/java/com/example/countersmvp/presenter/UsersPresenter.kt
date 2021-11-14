@@ -1,14 +1,17 @@
 package com.example.countersmvp.presenter
 
+import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.model.GithubUser
 import com.example.countersmvp.model.GithubUsersRepo
 import com.example.countersmvp.view.IUsersScreens
 import com.example.countersmvp.view.IUsersView
 import com.example.countersmvp.view.IUserItemView
 import com.github.terrakok.cicerone.Router
+import io.reactivex.rxjava3.core.Single
 import moxy.MvpPresenter
 
 class UsersPresenter(private val usersRepo: GithubUsersRepo,
+                     private val userRepository: GitHubUserRepository,
                      private val router: Router,
                      private val usersScreens: IUsersScreens) : MvpPresenter<IUsersView>() {
 
@@ -50,4 +53,6 @@ class UsersPresenter(private val usersRepo: GithubUsersRepo,
     }
 
 }
+
+
 
