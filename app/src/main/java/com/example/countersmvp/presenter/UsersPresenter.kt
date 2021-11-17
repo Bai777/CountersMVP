@@ -46,11 +46,11 @@ class UsersPresenter(
     }
 
     private fun loadData() {
-        val users = usersRepo.getUsers()
-        Observable.just(users)
-            .subscribe()
-//        usersListPresenter.users.addAll(users)
-//        viewState.updateList()
+        usersRepo.getUsers()
+            .subscribe({users ->
+                usersListPresenter.users.addAll(users)
+                viewState.updateList()
+            }, {})
     }
 
     fun backPressed(): Boolean {
