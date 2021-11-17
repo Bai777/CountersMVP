@@ -9,8 +9,10 @@ class GithubUsersRepo : GitHubUserRepository {
 
 
     override fun getUsers(): Single<List<GithubUser>> = Single.just(users)
-    override fun getUserByLogin(login: String): Maybe<GithubUser> =
-        users.firstOrNull() { user -> user.login = login }
-            ?.let { Maybe.just(it) }
+        .map { users -> users.map { it.copy(login = it.login.lowercase()) } }
+
+    override fun getUserByLogin(userId: String): Maybe<GithubUser> =
+        users.firstOrNull() { user -> user.login.contentEquals(userId, ignoreCase = true) }
+            ?.let { user -> Maybe.just(user) }
             ?: Maybe.empty()
 }

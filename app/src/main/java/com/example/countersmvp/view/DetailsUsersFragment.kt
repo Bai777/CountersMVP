@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.countersmvp.databinding.FragmentUserDetailsBinding
 import com.example.countersmvp.databinding.FragmentUsersBinding
@@ -17,7 +18,7 @@ import moxy.ktx.moxyPresenter
 
 class DetailsUsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener, ShowUser {
     companion object {
-        fun newInstance() = DetailsUsersFragment()
+        fun newInstance(): Fragment = DetailsUsersFragment()
     }
 
     private val presenter: UsersPresenter by moxyPresenter {
