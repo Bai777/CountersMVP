@@ -9,6 +9,7 @@ import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import io.reactivex.rxjava3.functions.Consumer
 import moxy.MvpPresenter
 
 class UsersPresenter(
@@ -46,8 +47,10 @@ class UsersPresenter(
 
     private fun loadData() {
         val users = usersRepo.getUsers()
-        usersListPresenter.users.addAll(users)
-        viewState.updateList()
+        Observable.just(users)
+            .subscribe()
+//        usersListPresenter.users.addAll(users)
+//        viewState.updateList()
     }
 
     fun backPressed(): Boolean {
