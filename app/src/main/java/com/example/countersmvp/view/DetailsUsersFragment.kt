@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.countersmvp.databinding.FragmentUserDetailsBinding
-import com.example.countersmvp.model.GithubUsersRepo
+import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.presenter.UsersPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -17,7 +17,7 @@ class DetailsUsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonList
 
     private val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter(
-            GithubUsersRepo(),
+            GitHubUserRepository(),
             App.instance.router, AndroidScreens()
         )
     }

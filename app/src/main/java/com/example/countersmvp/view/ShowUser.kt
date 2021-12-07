@@ -1,7 +1,7 @@
 package com.example.countersmvp.view
 
-import com.example.countersmvp.model.GithubUser
+import com.example.countersmvp.model.GitHubUser
 
 interface ShowUser {
-    fun showUser(user: GithubUser)
+    fun showUser(user: GitHubUser)
 }

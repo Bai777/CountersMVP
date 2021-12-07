@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.countersmvp.databinding.FragmentUsersBinding
-import com.example.countersmvp.model.GithubUsersRepo
+import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.presenter.UsersPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -16,7 +16,7 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
         fun newInstance() = UsersFragment()
     }
 
-    private val presenter: UsersPresenter by moxyPresenter { UsersPresenter(GithubUsersRepo(),
+    private val presenter: UsersPresenter by moxyPresenter { UsersPresenter(GitHubUserRepository(),
         App.instance.router, AndroidScreens()) }
     private var adapter: UsersRVAdapter? = null
 

@@ -1,19 +1,19 @@
 package com.example.countersmvp.presenter
 
-import com.example.countersmvp.model.GithubUser
-import com.example.countersmvp.model.GithubUsersRepo
+import com.example.countersmvp.model.GitHubUser
+import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.view.IUsersScreens
 import com.example.countersmvp.view.IUsersView
 import com.example.countersmvp.view.IUserItemView
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class UsersPresenter(private val usersRepo: GithubUsersRepo,
+class UsersPresenter(private val userRepository: GitHubUserRepository,
                      private val router: Router,
                      private val usersScreens: IUsersScreens) : MvpPresenter<IUsersView>() {
 
     class UsersListPresenter : IUserListPresenter {
-        val users = mutableListOf<GithubUser>()
+        val users = mutableListOf<GitHubUser>()
 
         override var itemClickListener: ((IUserItemView) -> Unit)? = null
 
@@ -39,7 +39,7 @@ class UsersPresenter(private val usersRepo: GithubUsersRepo,
     }
 
     private fun loadData() {
-        val users = usersRepo.getUsers()
+        val users = userRepository.getUsers()
         usersListPresenter.users.addAll(users)
         viewState.updateList()
     }
