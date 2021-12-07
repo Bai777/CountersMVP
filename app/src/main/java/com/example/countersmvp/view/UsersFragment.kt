@@ -33,9 +33,7 @@ class UsersFragment : MvpAppCompatFragment(), IUsersView, IBackButtonListener {
     }
 
     override fun init() {
-        binding?.rvUsers?.layoutManager = LinearLayoutManager(context)
-        adapter = UsersRVAdapter(presenter.usersListPresenter)
-        binding?.rvUsers?.adapter = adapter
+
     }
 
     @SuppressLint("NotifyDataSetChanged")

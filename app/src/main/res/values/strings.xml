@@ -4,4 +4,7 @@
     <string name="counter_two">Счетчик 2</string>
     <string name="counter_three">Счетчик 3</string>
     <string name="textButtons">0</string>
+    <string name="textFromLogin">Введите логин</string>
+    <string name="textFromPassword">Введите пароль</string>
+    <string name="textFromButton">Продолжить</string>
 </resources>
