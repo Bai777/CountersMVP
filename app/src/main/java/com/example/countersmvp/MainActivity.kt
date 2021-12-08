@@ -2,6 +2,7 @@ package com.example.countersmvp
 
 import android.os.Bundle
 import com.example.countersmvp.databinding.ActivityMainBinding
+import com.example.countersmvp.model.GitHubUser
 import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.presenter.UserPresenter
 import com.example.countersmvp.view.*
@@ -44,4 +45,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
 
     }
     override fun backPressed() = presenter.backPressed()
+    override fun showUser(login: GitHubUser, password: GitHubUser) {
+        TODO("Not yet implemented")
+    }
 }
