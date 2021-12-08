@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.countersmvp.databinding.FragmentUsersBinding
+import com.example.countersmvp.model.GitHubUser
 import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.presenter.UserPresenter
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UserFragment : MvpAppCompatFragment(), IBackButtonListener {
+class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
     companion object {
         fun newInstance() = UserFragment()
     }
@@ -43,4 +44,7 @@ class UserFragment : MvpAppCompatFragment(), IBackButtonListener {
         App.instance.router.navigateTo(UserScreen(user, passwordUser))
 
     override fun backPressed() = presenter.backPressed()
+    override fun showUser(login: GitHubUser, password: GitHubUser) {
+        TODO("Not yet implemented")
+    }
 }
