@@ -1,7 +1,12 @@
 package com.example.countersmvp.model
 
-class GitHubUserRepository {
-    private val users = { GitHubUser("login","password") }
+import com.example.countersmvp.R
 
-   fun getUsers() = users
+class GitHubUserRepository {
+    private val login get() = R.id.et_login
+    private val password get() = R.id.et_login
+
+    private val users = { GitHubUser(login.toString(), password.toString()) }
+
+    fun getUsers() = users
 }

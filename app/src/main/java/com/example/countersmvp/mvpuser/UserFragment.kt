@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.countersmvp.databinding.FragmentUsersBinding
 import com.example.countersmvp.model.GitHubUserRepository
+import com.example.countersmvp.mvpusers.UsersFragment
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
 import com.example.countersmvp.view.IMainView
@@ -18,7 +19,8 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         fun newInstance() = UserFragment()
     }
 
-    private val presenter: UserPresenter by moxyPresenter { UserPresenter(GitHubUserRepository(),
+    private val presenter: UserPresenter by moxyPresenter { UserPresenter(
+        userRepository = GitHubUserRepository(),
         App.instance.router) }
 
     private var binding: FragmentUsersBinding? = null
@@ -30,10 +32,8 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val login = binding?.etLogin?.text.toString()
-        val password = binding?.etPassword?.text.toString()
         binding!!.buttonProceed.setOnClickListener{
-            displayUser(login, password)
+            displayUser("login", "password")
         }
     }
 
@@ -42,8 +42,8 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         binding = null
     }
 
-    private fun displayUser(user: String, passwordUser: String) =
-        App.instance.router.navigateTo(UsersScreen(user, passwordUser))
+    private fun displayUser(userLogo: String, passwordUser: String) =
+        App.instance.router.navigateTo(UsersScreen(userLogo, passwordUser))
 
     override fun backPressed() = presenter.backPressed()
 

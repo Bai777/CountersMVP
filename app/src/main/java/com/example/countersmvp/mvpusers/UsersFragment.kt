@@ -16,7 +16,7 @@ import com.github.terrakok.cicerone.Screen
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UsersFragment() : MvpAppCompatFragment(), IUserView, IBackButtonListener, Screen {
+class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener, Screen {
 
 
     private val presenter: UserPresenter by moxyPresenter {
@@ -45,17 +45,15 @@ class UsersFragment() : MvpAppCompatFragment(), IUserView, IBackButtonListener, 
 
     override fun backPressed() = presenter.backPressed()
 
-    private val userLogin: String by lazy {
-        arguments?.getString(ARG_USER_LOGIN, ARG_USER_PASSWORD).orEmpty()
-    }
+
     @SuppressLint("SetTextI18n")
     override fun showUser(login: GitHubUser, password: GitHubUser) {
         binding?.tvUser?.text = "login $login, password $password"
     }
 
     companion object {
-        private const val ARG_USER_LOGIN = "arg_user_login"
-        private const val ARG_USER_PASSWORD = "arg_user_password"
+        const val ARG_USER_LOGIN = "arg_user_login"
+        const val ARG_USER_PASSWORD = "arg_user_password"
 
         fun newInstance(userId: String, userPassword: String): Fragment =
             UsersFragment().apply {
