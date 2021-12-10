@@ -3,4 +3,5 @@
     <dimen name="paddingMainLinearLayout">16dp</dimen>
     <dimen name="textSizeFromEditText">36sp</dimen>
     <dimen name="marginTop">55dp</dimen>
+    <dimen name="textTvUserDisplay">26sp</dimen>
 </resources>

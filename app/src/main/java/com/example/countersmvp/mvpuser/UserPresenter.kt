@@ -15,20 +15,19 @@ class UserPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-//        userRepository
-//            .getUsers()
-//            .let { viewState::showUser }
     }
-
-    fun setText(){
-        displayUser(userRepository.set())
-    }
-        private fun displayUser(set: ArrayList<String>) =
-        App.instance.router.navigateTo(UsersScreen(set))
 
     fun backPressed(): Boolean {
         router.exit()
         return true
+    }
+
+    fun validateData(login: String, password: String) {
+        if (login.isNullOrEmpty() && password.isNullOrEmpty()){
+
+        }else{
+            App.instance.router.navigateTo(UsersScreen(login, password))
+        }
     }
 }
 

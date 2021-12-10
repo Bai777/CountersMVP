@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop"
         android:hint="@string/textFromPassword"
-        android:password="true"
         android:textSize="@dimen/textSizeFromEditText" />
 
     <com.google.android.material.button.MaterialButton

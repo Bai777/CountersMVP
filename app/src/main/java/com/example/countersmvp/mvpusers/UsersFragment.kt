@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.countersmvp.databinding.FragmentUserDetailsBinding
+import com.example.countersmvp.databinding.FragmentUserDisplayBinding
 import com.example.countersmvp.model.GitHubUser
 import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.mvpuser.UserPresenter
@@ -26,21 +26,21 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
         )
     }
 
-    private var binding: FragmentUserDetailsBinding? = null
+    private var binding: FragmentUserDisplayBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ) =
-        FragmentUserDetailsBinding.inflate(inflater, container, false).also {
+        FragmentUserDisplayBinding.inflate(inflater, container, false).also {
             binding = it
         }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val yourArray = arguments?.getStringArrayList(ARG_USER_RESULT).orEmpty()
-        binding?.tvUser?.text = yourArray.toString()
+        val result = arguments?.getString(ARG_USER_LOGIN, ARG_USER_PASSWORD).orEmpty()
+        binding?.tvUser?.text = result
     }
 
 
@@ -54,16 +54,18 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
 
     @SuppressLint("SetTextI18n")
     override fun showUser(login: GitHubUser, password: GitHubUser) {
-        binding?.tvUser?.text = "login $login, password $password"
+
     }
 
     companion object {
-        private const val ARG_USER_RESULT = "arg_user_requireResult"
+        private const val ARG_USER_LOGIN = "arg_user_login"
+        private const val ARG_USER_PASSWORD = "arg_user_password"
 
-        fun newInstance(set: ArrayList<String>): Fragment =
+        fun newInstance(login: String, password: String): Fragment =
             UsersFragment().apply {
                 arguments = Bundle().apply {
-                    putStringArrayList(ARG_USER_RESULT, set)
+                    putString(ARG_USER_LOGIN, login)
+                    putString(ARG_USER_PASSWORD, password)
                 }
             }
     }

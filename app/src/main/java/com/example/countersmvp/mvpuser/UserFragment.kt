@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.countersmvp.databinding.FragmentUsersBinding
+import com.example.countersmvp.databinding.FragmentUserAutorizationBinding
 import com.example.countersmvp.model.GitHubUserRepository
-import com.example.countersmvp.mvpusers.UsersFragment
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
 import com.example.countersmvp.view.IMainView
-import com.example.countersmvp.mvpusers.UsersScreen
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -23,10 +21,10 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         userRepository = GitHubUserRepository(),
         App.instance.router) }
 
-    private var binding: FragmentUsersBinding? = null
+    private var binding: FragmentUserAutorizationBinding? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) =
-        FragmentUsersBinding.inflate(inflater, container, false).also {
+        FragmentUserAutorizationBinding.inflate(inflater, container, false).also {
             binding = it
         }.root
 
@@ -34,8 +32,9 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding!!.buttonProceed.setOnClickListener{
-            presenter.setText()
-           // displayUser("login", "password")
+            val login = binding?.etLogin?.text.toString()
+            val password = binding?.etPassword?.text.toString()
+            presenter.validateData(login, password)
         }
     }
 
@@ -43,9 +42,6 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         super.onDestroyView()
         binding = null
     }
-
-//    private fun displayUser(userLogo: String, passwordUser: String) =
-//        App.instance.router.navigateTo(UsersScreen(userLogo, passwordUser))
 
     override fun backPressed() = presenter.backPressed()
 
