@@ -23,7 +23,7 @@ class UserPresenter(
     fun setText(){
         displayUser(userRepository.set())
     }
-        private fun displayUser(set: ArrayList<out String>) =
+        private fun displayUser(set: ArrayList<String>) =
         App.instance.router.navigateTo(UsersScreen(set))
 
     fun backPressed(): Boolean {

@@ -7,11 +7,7 @@ class GitHubUserRepository {
     private val login = R.id.et_login
     private val password = R.id.et_password
 
-//    private val users = { GitHubUser(login.toString(), password.toString()) }
-//
-//    fun getUsers() = users
-
-    fun set():ArrayList<out String> {
+    fun set():ArrayList<String> {
         val list = ArrayList<String>()
         val userLogin = login.toString()
         val userPassword = password.toString()

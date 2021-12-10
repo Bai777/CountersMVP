@@ -3,6 +3,7 @@ package com.example.countersmvp.mvpusers
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.countersmvp.databinding.FragmentUserDetailsBinding
@@ -36,6 +37,12 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
             binding = it
         }.root
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val yourArray = arguments?.getStringArrayList(ARG_USER_RESULT).orEmpty()
+        binding?.tvUser?.text = yourArray.toString()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -53,10 +60,10 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
     companion object {
         private const val ARG_USER_RESULT = "arg_user_requireResult"
 
-        fun newInstance(set: Any?): Fragment =
+        fun newInstance(set: ArrayList<String>): Fragment =
             UsersFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_USER_RESULT, set.toString())
+                    putStringArrayList(ARG_USER_RESULT, set)
                 }
             }
     }
