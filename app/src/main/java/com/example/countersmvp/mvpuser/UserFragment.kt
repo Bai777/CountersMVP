@@ -32,8 +32,10 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding!!.buttonProceed.setOnClickListener{
-            displayUser("login", "password")
+            presenter.setText()
+           // displayUser("login", "password")
         }
     }
 
@@ -42,8 +44,8 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         binding = null
     }
 
-    private fun displayUser(userLogo: String, passwordUser: String) =
-        App.instance.router.navigateTo(UsersScreen(userLogo, passwordUser))
+//    private fun displayUser(userLogo: String, passwordUser: String) =
+//        App.instance.router.navigateTo(UsersScreen(userLogo, passwordUser))
 
     override fun backPressed() = presenter.backPressed()
 

@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.countersmvp.databinding.FragmentUserDetailsBinding
 import com.example.countersmvp.model.GitHubUser
 import com.example.countersmvp.model.GitHubUserRepository
-import com.example.countersmvp.mvpuser.IUserView
 import com.example.countersmvp.mvpuser.UserPresenter
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
@@ -52,14 +51,12 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
     }
 
     companion object {
-        const val ARG_USER_LOGIN = "arg_user_login"
-        const val ARG_USER_PASSWORD = "arg_user_password"
+        private const val ARG_USER_RESULT = "arg_user_requireResult"
 
-        fun newInstance(userId: String, userPassword: String): Fragment =
+        fun newInstance(set: Any?): Fragment =
             UsersFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_USER_LOGIN, userId)
-                    putString(ARG_USER_PASSWORD, userPassword)
+                    putString(ARG_USER_RESULT, set.toString())
                 }
             }
     }
