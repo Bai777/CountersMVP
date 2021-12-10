@@ -1,4 +1,4 @@
-package com.example.countersmvp.view
+package com.example.countersmvp.mvpuser
 
 import com.example.countersmvp.model.GitHubUser
 import moxy.MvpView

@@ -2,9 +2,9 @@ package com.example.countersmvp
 
 import android.os.Bundle
 import com.example.countersmvp.databinding.ActivityMainBinding
-import com.example.countersmvp.model.GitHubUser
 import com.example.countersmvp.model.GitHubUserRepository
-import com.example.countersmvp.presenter.UserPresenter
+import com.example.countersmvp.mvpuser.UserScreen
+import com.example.countersmvp.mvpuser.UserPresenter
 import com.example.countersmvp.view.*
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
@@ -23,7 +23,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        App.instance.router.navigateTo(LogoScreen)
+        App.instance.router.navigateTo(UserScreen)
     }
 
     override fun onResumeFragments() {
@@ -45,7 +45,5 @@ class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
 
     }
     override fun backPressed() = presenter.backPressed()
-    override fun showUser(login: GitHubUser, password: GitHubUser) {
-        TODO("Not yet implemented")
-    }
+
 }
