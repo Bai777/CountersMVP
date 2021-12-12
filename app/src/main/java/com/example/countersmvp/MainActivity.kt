@@ -1,11 +1,51 @@
 package com.example.countersmvp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.countersmvp.databinding.ActivityMainBinding
+import com.example.countersmvp.model.GitHubUserRepository
+import com.example.countersmvp.mvpuser.UserPresenter
+import com.example.countersmvp.mvpuser.UserScreen
+import com.example.countersmvp.view.App
+import com.example.countersmvp.view.IBackButtonListener
+import com.example.countersmvp.view.IMainView
+import com.github.terrakok.cicerone.androidx.AppNavigator
+import moxy.MvpAppCompatActivity
+import moxy.ktx.moxyPresenter
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
+
+    private val navigator = AppNavigator(this, R.id.container)
+
+    private val presenter by moxyPresenter { UserPresenter(
+        GitHubUserRepository(),
+        App.instance.router) }
+    private var binding: ActivityMainBinding? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding?.root)
+        App.instance.router.navigateTo(UserScreen)
     }
+
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        App.instance.navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        App.instance.navigatorHolder.removeNavigator()
+    }
+
+    override fun onBackPressed() {
+        supportFragmentManager.fragments.forEach {
+            if (it is IBackButtonListener && it.backPressed()){
+                return
+            }
+        }
+
+    }
+    override fun backPressed() = presenter.backPressed()
+
 }
