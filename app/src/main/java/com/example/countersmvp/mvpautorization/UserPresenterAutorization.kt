@@ -8,8 +8,6 @@ import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 class UserPresenterAutorization(
-    private val loginUser: String,
-    private val passwordUser: String,
     private val userRepositoryImpl: GitHubUserRepositoryImpl,
     private val router: Router,
 ) : MvpPresenter<IUserViewAutorization>() {
@@ -17,11 +15,7 @@ class UserPresenterAutorization(
     private val context = App.instance.getContext()
     private val usersRepositoryImpl = GitHubUserRepositoryImpl()
     override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
-        userRepositoryImpl.getUsers(loginUser, passwordUser)
-            .subscribe({ users ->
-                viewState.showUsers(users)
-            }, {})
+
     }
 
     fun backPressed(): Boolean {

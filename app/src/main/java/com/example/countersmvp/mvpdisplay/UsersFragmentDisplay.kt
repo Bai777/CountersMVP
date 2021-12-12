@@ -19,10 +19,17 @@ import moxy.ktx.moxyPresenter
 class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackButtonListener, Screen {
 
 
-
+    private val loginUser: String by lazy {
+        arguments?.getString(ARG_USER_LOGIN).orEmpty()
+    }
+    private val passwordUser: String by lazy {
+        arguments?.getString(ARG_USER_PASSWORD).orEmpty()
+    }
 
     private val presenterDisplay: UsersPresenterDisplay by moxyPresenter {
         UsersPresenterDisplay(
+            loginUser = loginUser,
+            passwordUser = passwordUser,
             userRepositoryImpl = GitHubUserRepositoryImpl(),
             App.instance.router
         )
