@@ -45,7 +45,6 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
         binding?.tvUser?.text = "Логин $login Пароль $password"
     }
 
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
