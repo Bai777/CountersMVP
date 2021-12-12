@@ -19,8 +19,10 @@ import moxy.ktx.moxyPresenter
 class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackButtonListener, Screen {
 
 
-    private val presenterAutorization: UserPresenterAutorization by moxyPresenter {
-        UserPresenterAutorization(
+
+
+    private val presenterDisplay: UsersPresenterDisplay by moxyPresenter {
+        UsersPresenterDisplay(
             userRepositoryImpl = GitHubUserRepositoryImpl(),
             App.instance.router
         )
@@ -50,12 +52,12 @@ class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackB
         binding = null
     }
 
-    override fun backPressed() = presenterAutorization.backPressed()
+    override fun backPressed() = presenterDisplay.backPressed()
 
 
     companion object {
-        private const val ARG_USER_LOGIN = "arg_user_login"
-        private const val ARG_USER_PASSWORD = "arg_user_password"
+        const val ARG_USER_LOGIN = "arg_user_login"
+        const val ARG_USER_PASSWORD = "arg_user_password"
 
         fun newInstance(login: String, password: String): Fragment =
             UsersFragmentDisplay().apply {

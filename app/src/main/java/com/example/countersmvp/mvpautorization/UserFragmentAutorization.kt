@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.countersmvp.databinding.FragmentUserAutorizationBinding
 import com.example.countersmvp.model.GitHubUserRepositoryImpl
+import com.example.countersmvp.mvpdisplay.UsersFragmentDisplay
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
 import com.example.countersmvp.view.IMainView
@@ -17,9 +18,19 @@ class UserFragmentAutorization : MvpAppCompatFragment(), IMainView, IBackButtonL
         fun newInstance() = UserFragmentAutorization()
     }
 
+    private val loginUser: String by lazy {
+        arguments?.getString(UsersFragmentDisplay.ARG_USER_LOGIN).orEmpty()
+    }
+    private val passwordUser: String by lazy {
+        arguments?.getString(UsersFragmentDisplay.ARG_USER_PASSWORD).orEmpty()
+    }
+
     private val presenterAutorization: UserPresenterAutorization by moxyPresenter { UserPresenterAutorization(
+        loginUser = loginUser,
+        passwordUser = passwordUser,
         userRepositoryImpl = GitHubUserRepositoryImpl(),
-        App.instance.router) }
+        router = App.instance.router
+    ) }
 
     private var binding: FragmentUserAutorizationBinding? = null
 

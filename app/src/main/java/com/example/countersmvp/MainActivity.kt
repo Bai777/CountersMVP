@@ -2,23 +2,17 @@ package com.example.countersmvp
 
 import android.os.Bundle
 import com.example.countersmvp.databinding.ActivityMainBinding
-import com.example.countersmvp.model.GitHubUserRepositoryImpl
-import com.example.countersmvp.mvpautorization.UserPresenterAutorization
 import com.example.countersmvp.mvpautorization.UserScreenAutorization
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
 import com.example.countersmvp.view.IMainView
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
-import moxy.ktx.moxyPresenter
 
-class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
+class MainActivity : MvpAppCompatActivity(), IMainView{
 
     private val navigator = AppNavigator(this, R.id.container)
 
-    private val presenter by moxyPresenter { UserPresenterAutorization(
-        userRepositoryImpl = GitHubUserRepositoryImpl(),
-        App.instance.router) }
     private var binding: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +40,4 @@ class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
         }
 
     }
-    override fun backPressed() = presenter.backPressed()
-
 }
