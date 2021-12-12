@@ -12,7 +12,10 @@ class UsersPresenterDisplay(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
+        userRepositoryImpl.getUsers("", "")
+            .subscribe({ users ->
+                viewState.showUsers(users)
+            }, {})
     }
 
     fun backPressed(): Boolean {

@@ -6,7 +6,6 @@ import io.reactivex.rxjava3.core.Observable
 
 class GitHubUserRepositoryImpl : IGitHubUserRepository {
 
-
     private val users = listOf(
         GitHubUser("user1", "12345"),
         GitHubUser("user2", "11111"),
