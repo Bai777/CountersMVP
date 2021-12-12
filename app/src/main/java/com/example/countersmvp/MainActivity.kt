@@ -3,8 +3,8 @@ package com.example.countersmvp
 import android.os.Bundle
 import com.example.countersmvp.databinding.ActivityMainBinding
 import com.example.countersmvp.model.GitHubUserRepository
-import com.example.countersmvp.mvpuser.UserPresenter
-import com.example.countersmvp.mvpuser.UserScreen
+import com.example.countersmvp.mvpautorization.UserPresenterAutorization
+import com.example.countersmvp.mvpautorization.UserScreenAutorization
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
 import com.example.countersmvp.view.IMainView
@@ -16,7 +16,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
 
     private val navigator = AppNavigator(this, R.id.container)
 
-    private val presenter by moxyPresenter { UserPresenter(
+    private val presenter by moxyPresenter { UserPresenterAutorization(
         GitHubUserRepository(),
         App.instance.router) }
     private var binding: ActivityMainBinding? = null
@@ -25,7 +25,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding?.root)
-        App.instance.router.navigateTo(UserScreen)
+        App.instance.router.navigateTo(UserScreenAutorization)
     }
 
     override fun onResumeFragments() {

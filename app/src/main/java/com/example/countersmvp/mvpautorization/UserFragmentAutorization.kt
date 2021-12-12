@@ -1,12 +1,9 @@
-package com.example.countersmvp.mvpuser
+package com.example.countersmvp.mvpautorization
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.example.countersmvp.databinding.FragmentUserAutorizationBinding
 import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.view.App
@@ -15,12 +12,12 @@ import com.example.countersmvp.view.IMainView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
+class UserFragmentAutorization : MvpAppCompatFragment(), IMainView, IBackButtonListener {
     companion object {
-        fun newInstance() = UserFragment()
+        fun newInstance() = UserFragmentAutorization()
     }
 
-    private val presenter: UserPresenter by moxyPresenter { UserPresenter(
+    private val presenterAutorization: UserPresenterAutorization by moxyPresenter { UserPresenterAutorization(
         userRepository = GitHubUserRepository(),
         App.instance.router) }
 
@@ -37,7 +34,7 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         binding!!.buttonProceed.setOnClickListener{
             val login = binding?.etLogin?.text.toString()
             val password = binding?.etPassword?.text.toString()
-            presenter.validateData(login, password)
+            presenterAutorization.validateData(login, password)
         }
     }
 
@@ -47,6 +44,6 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
         binding = null
     }
 
-    override fun backPressed() = presenter.backPressed()
+    override fun backPressed() = presenterAutorization.backPressed()
 
 }

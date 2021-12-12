@@ -1,10 +1,10 @@
-package com.example.countersmvp.mvpusers
+package com.example.countersmvp.mvpdisplay
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentFactory
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
-class UsersScreen(private val login: String, private val password: String) : FragmentScreen {
+class UsersScreenDisplay(private val login: String, private val password: String) : FragmentScreen {
     override fun createFragment(factory: FragmentFactory): Fragment =
-        UsersFragment.newInstance(login, password)
+        UsersFragmentDisplay.newInstance(login, password)
 }

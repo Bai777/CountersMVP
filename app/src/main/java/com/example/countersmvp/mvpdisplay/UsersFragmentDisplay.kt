@@ -1,4 +1,4 @@
-package com.example.countersmvp.mvpusers
+package com.example.countersmvp.mvpdisplay
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,18 +9,18 @@ import androidx.fragment.app.Fragment
 import com.example.countersmvp.databinding.FragmentUserDisplayBinding
 import com.example.countersmvp.model.GitHubUser
 import com.example.countersmvp.model.GitHubUserRepository
-import com.example.countersmvp.mvpuser.UserPresenter
+import com.example.countersmvp.mvpautorization.UserPresenterAutorization
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
 import com.github.terrakok.cicerone.Screen
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener, Screen {
+class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackButtonListener, Screen {
 
 
-    private val presenter: UserPresenter by moxyPresenter {
-        UserPresenter(
+    private val presenterAutorization: UserPresenterAutorization by moxyPresenter {
+        UserPresenterAutorization(
             GitHubUserRepository(),
             App.instance.router
         )
@@ -50,7 +50,7 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
         binding = null
     }
 
-    override fun backPressed() = presenter.backPressed()
+    override fun backPressed() = presenterAutorization.backPressed()
 
 
     @SuppressLint("SetTextI18n")
@@ -63,7 +63,7 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
         private const val ARG_USER_PASSWORD = "arg_user_password"
 
         fun newInstance(login: String, password: String): Fragment =
-            UsersFragment().apply {
+            UsersFragmentDisplay().apply {
                 arguments = Bundle().apply {
                     putString(ARG_USER_LOGIN, login)
                     putString(ARG_USER_PASSWORD, password)

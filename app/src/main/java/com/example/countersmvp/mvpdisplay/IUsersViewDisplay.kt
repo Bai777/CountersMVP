@@ -1,11 +1,11 @@
-package com.example.countersmvp.mvpusers
+package com.example.countersmvp.mvpdisplay
 
 import com.example.countersmvp.model.GitHubUser
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 
 @AddToEndSingle
-interface IUsersView: MvpView{
+interface IUsersViewDisplay: MvpView{
     fun showUser(login: GitHubUser, password: GitHubUser)
 }
 

@@ -1,13 +1,13 @@
-package com.example.countersmvp.mvpusers
+package com.example.countersmvp.mvpdisplay
 
 import com.example.countersmvp.model.GitHubUserRepository
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class UsersPresenter(
+class UsersPresenterDisplay(
     private val userRepository: GitHubUserRepository,
     private val router: Router,
-) : MvpPresenter<IUsersView>() {
+) : MvpPresenter<IUsersViewDisplay>() {
 
 
     override fun onFirstViewAttach() {
