@@ -1,6 +1,7 @@
 package com.example.countersmvp.view
 
 import android.app.Application
+import android.content.Context
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
 
@@ -16,6 +17,9 @@ class App : Application() {
     val navigatorHolder get() = cicerone.getNavigatorHolder()
     val router get() = cicerone.router
 
+    fun getContext(): Context? {
+        return applicationContext
+    }
 
     override fun onCreate() {
         super.onCreate()

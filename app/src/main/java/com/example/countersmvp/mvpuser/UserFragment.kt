@@ -1,9 +1,12 @@
 package com.example.countersmvp.mvpuser
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.countersmvp.databinding.FragmentUserAutorizationBinding
 import com.example.countersmvp.model.GitHubUserRepository
 import com.example.countersmvp.view.App
@@ -37,6 +40,7 @@ class UserFragment : MvpAppCompatFragment(), IMainView, IBackButtonListener {
             presenter.validateData(login, password)
         }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

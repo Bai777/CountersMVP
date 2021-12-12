@@ -37,10 +37,12 @@ class UsersFragment() : MvpAppCompatFragment(), IUsersView, IBackButtonListener,
             binding = it
         }.root
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val result = arguments?.getString(ARG_USER_LOGIN, ARG_USER_PASSWORD).orEmpty()
-        binding?.tvUser?.text = result
+        val login = arguments?.getString(ARG_USER_LOGIN).orEmpty()
+        val password = arguments?.getString(ARG_USER_PASSWORD).orEmpty()
+        binding?.tvUser?.text = "Логин $login Пароль $password"
     }
 
 

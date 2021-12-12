@@ -3,9 +3,11 @@ package com.example.countersmvp
 import android.os.Bundle
 import com.example.countersmvp.databinding.ActivityMainBinding
 import com.example.countersmvp.model.GitHubUserRepository
-import com.example.countersmvp.mvpuser.UserScreen
 import com.example.countersmvp.mvpuser.UserPresenter
-import com.example.countersmvp.view.*
+import com.example.countersmvp.mvpuser.UserScreen
+import com.example.countersmvp.view.App
+import com.example.countersmvp.view.IBackButtonListener
+import com.example.countersmvp.view.IMainView
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
