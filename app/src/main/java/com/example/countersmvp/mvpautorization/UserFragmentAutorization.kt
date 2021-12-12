@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.countersmvp.databinding.FragmentUserAutorizationBinding
-import com.example.countersmvp.model.GitHubUserRepository
+import com.example.countersmvp.model.GitHubUserRepositoryImpl
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
 import com.example.countersmvp.view.IMainView
@@ -18,7 +18,7 @@ class UserFragmentAutorization : MvpAppCompatFragment(), IMainView, IBackButtonL
     }
 
     private val presenterAutorization: UserPresenterAutorization by moxyPresenter { UserPresenterAutorization(
-        userRepository = GitHubUserRepository(),
+        userRepositoryImpl = GitHubUserRepositoryImpl(),
         App.instance.router) }
 
     private var binding: FragmentUserAutorizationBinding? = null

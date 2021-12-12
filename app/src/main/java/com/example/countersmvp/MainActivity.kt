@@ -2,7 +2,7 @@ package com.example.countersmvp
 
 import android.os.Bundle
 import com.example.countersmvp.databinding.ActivityMainBinding
-import com.example.countersmvp.model.GitHubUserRepository
+import com.example.countersmvp.model.GitHubUserRepositoryImpl
 import com.example.countersmvp.mvpautorization.UserPresenterAutorization
 import com.example.countersmvp.mvpautorization.UserScreenAutorization
 import com.example.countersmvp.view.App
@@ -17,7 +17,7 @@ class MainActivity : MvpAppCompatActivity(), IMainView, IBackButtonListener {
     private val navigator = AppNavigator(this, R.id.container)
 
     private val presenter by moxyPresenter { UserPresenterAutorization(
-        GitHubUserRepository(),
+        userRepositoryImpl = GitHubUserRepositoryImpl(),
         App.instance.router) }
     private var binding: ActivityMainBinding? = null
 

@@ -6,6 +6,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 
 @AddToEndSingle
 interface IUsersViewDisplay: MvpView{
-    fun showUser(login: GitHubUser, password: GitHubUser)
+    fun showUsers(users: List<GitHubUser>)
+
 }
 

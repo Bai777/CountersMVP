@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.countersmvp.databinding.FragmentUserDisplayBinding
 import com.example.countersmvp.model.GitHubUser
-import com.example.countersmvp.model.GitHubUserRepository
+import com.example.countersmvp.model.GitHubUserRepositoryImpl
 import com.example.countersmvp.mvpautorization.UserPresenterAutorization
 import com.example.countersmvp.view.App
 import com.example.countersmvp.view.IBackButtonListener
@@ -21,7 +21,7 @@ class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackB
 
     private val presenterAutorization: UserPresenterAutorization by moxyPresenter {
         UserPresenterAutorization(
-            GitHubUserRepository(),
+            userRepositoryImpl = GitHubUserRepositoryImpl(),
             App.instance.router
         )
     }
@@ -53,11 +53,6 @@ class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackB
     override fun backPressed() = presenterAutorization.backPressed()
 
 
-    @SuppressLint("SetTextI18n")
-    override fun showUser(login: GitHubUser, password: GitHubUser) {
-
-    }
-
     companion object {
         private const val ARG_USER_LOGIN = "arg_user_login"
         private const val ARG_USER_PASSWORD = "arg_user_password"
@@ -70,5 +65,12 @@ class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackB
                 }
             }
     }
+
+
+
+    override fun showUsers(users: List<GitHubUser>) {
+        TODO("Not yet implemented")
+    }
+
 
 }
