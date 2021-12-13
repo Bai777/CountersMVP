@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/textFromLogin"
+        android:textSize="@dimen/textSizeFromEditText" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        android:ems="10"
+        android:hint="@string/textFromPassword"
+        android:inputType="textPassword"
+        android:textSize="@dimen/textSizeFromEditText" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonProceed"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        android:text="@string/textFromButton" />
+</LinearLayout>
