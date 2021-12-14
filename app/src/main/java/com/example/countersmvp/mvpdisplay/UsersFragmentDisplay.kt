@@ -18,18 +18,8 @@ import moxy.ktx.moxyPresenter
 
 class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackButtonListener, Screen {
 
-
-    private val loginUser: String by lazy {
-        arguments?.getString(ARG_USER_LOGIN).orEmpty()
-    }
-    private val passwordUser: String by lazy {
-        arguments?.getString(ARG_USER_PASSWORD).orEmpty()
-    }
-
     private val presenterDisplay: UsersPresenterDisplay by moxyPresenter {
         UsersPresenterDisplay(
-            loginUser = loginUser,
-            passwordUser = passwordUser,
             userRepositoryImpl = GitHubUserRepositoryImpl(),
             App.instance.router
         )
@@ -49,9 +39,7 @@ class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackB
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val login = arguments?.getString(ARG_USER_LOGIN).orEmpty()
-        val password = arguments?.getString(ARG_USER_PASSWORD).orEmpty()
-        binding?.tvUser?.text = "Логин $login Пароль $password"
+
     }
 
     override fun onDestroyView() {
@@ -75,10 +63,10 @@ class UsersFragmentDisplay() : MvpAppCompatFragment(), IUsersViewDisplay, IBackB
             }
     }
 
-
-
     override fun showUsers(users: List<GitHubUser>) {
-        TODO("Not yet implemented")
+        val login = arguments?.getString(ARG_USER_LOGIN).orEmpty()
+        val password = arguments?.getString(ARG_USER_PASSWORD).orEmpty()
+        binding?.tvUser?.text = "Логин $login Пароль $password"
     }
 
 

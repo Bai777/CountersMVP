@@ -12,24 +12,24 @@ class GitHubUserRepositoryImpl : IGitHubUserRepository {
         GitHubUser("user3", "22222"),
         GitHubUser("user4", "33333"),
         GitHubUser("user5", "44444")
+
     )
 
-    override fun getUsers(login: String, password: String): Observable<List<GitHubUser>> {
+    override fun getUsers() = users
 
-        val result = listOf(
-            login, password
-        )
-        return if (result == users)
-            Observable.just(users)
-        else showMessage()
+    override fun getUserByLogin(loginUser: String, passwordUser: String): GitHubUser? {
+        return users.find { user -> user.login == loginUser && user.password == passwordUser }
     }
 
-    private fun showMessage(): Observable<List<GitHubUser>> {
-        Toast.makeText(
-            App.instance.getContext(),
-            "Такого пользователя не существует!!!",
-            Toast.LENGTH_SHORT
-        ).show()
-        return showMessage()
-    }
+       }
+
+private fun showMessage(): GitHubUser?{
+    Toast.makeText(
+        App.instance.getContext(),
+        "Такого пользователя не существует!!!",
+        Toast.LENGTH_SHORT
+    ).show()
+    return null
 }
+
+

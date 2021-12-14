@@ -18,9 +18,15 @@ class UserFragmentAutorization : MvpAppCompatFragment(), IMainView, IBackButtonL
         fun newInstance() = UserFragmentAutorization()
     }
 
-
+    private val loginUser: String by lazy {
+        arguments?.getString(UsersFragmentDisplay.ARG_USER_LOGIN).orEmpty()
+    }
+    private val passwordUser: String by lazy {
+        arguments?.getString(UsersFragmentDisplay.ARG_USER_PASSWORD).orEmpty()
+    }
 
     private val presenterAutorization: UserPresenterAutorization by moxyPresenter { UserPresenterAutorization(
+        loginUser = loginUser, passwordUser = passwordUser,
         userRepositoryImpl = GitHubUserRepositoryImpl(),
         router = App.instance.router
     ) }
@@ -41,7 +47,6 @@ class UserFragmentAutorization : MvpAppCompatFragment(), IMainView, IBackButtonL
             presenterAutorization.validateData(login, password)
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
