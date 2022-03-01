@@ -8,8 +8,6 @@ import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
 class UserPresenterAutorization(
-    private val loginUser: String,
-    private val passwordUser: String,
     private val userRepositoryImpl: GitHubUserRepositoryImpl,
     private val router: Router,
 ) : MvpPresenter<IUserViewAutorization>() {
@@ -34,7 +32,6 @@ class UserPresenterAutorization(
             App.instance.router.navigateTo(UsersScreenDisplay(login, password))
         }
     }
-
 }
 
 
